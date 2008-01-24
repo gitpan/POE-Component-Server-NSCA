@@ -22,4 +22,4 @@ requires:
   POE: 0.38
   POE::Component::Client::NSCA: 0.06
   Socket: 0
-version: 0.01
+version: 0.02

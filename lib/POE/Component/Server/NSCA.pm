@@ -8,7 +8,7 @@ use Math::Random;
 use POE qw(Wheel::SocketFactory Wheel::ReadWrite Filter::Stream);
 use vars qw($VERSION);
 
-$VERSION='0.01';
+$VERSION='0.02';
 
 use constant MAX_INPUT_BUFFER =>        2048    ; # /* max size of most buffers we use */
 use constant MAX_HOST_ADDRESS_LENGTH => 256     ; # /* max size of a host address */
@@ -207,8 +207,8 @@ sub unregister {
     %args = @_[ARG0..$#_];
   }
   $args{lc $_} = delete $args{$_} for keys %args;
-  delete $self->{sessions}->{ $sender_id };
-  $kernel->refcount_decrement( $sender_id, __PACKAGE__ );
+  my $data = delete $self->{sessions}->{ $sender_id };
+  $kernel->refcount_decrement( $sender_id, __PACKAGE__ ) if $data;
   return;
 }
 
