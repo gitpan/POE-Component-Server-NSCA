@@ -1,6 +1,7 @@
 package POE::Component::Server::NSCA;
 
 use strict;
+use warnings;
 use Socket;
 use Carp;
 use Net::Netmask;
@@ -8,7 +9,7 @@ use Math::Random;
 use POE qw(Wheel::SocketFactory Wheel::ReadWrite Filter::Stream);
 use vars qw($VERSION);
 
-$VERSION='0.02';
+$VERSION='0.04';
 
 use constant MAX_INPUT_BUFFER =>        2048    ; # /* max size of most buffers we use */
 use constant MAX_HOST_ADDRESS_LENGTH => 256     ; # /* max size of a host address */
@@ -233,8 +234,8 @@ sub _accept_failed {
 
 sub _accept_client {
   my ($kernel,$self,$socket,$peeraddr,$peerport) = @_[KERNEL,OBJECT,ARG0..ARG2];
-  my $sockaddr = inet_ntoa( ( unpack_sockaddr_in ( getsockname $socket ) )[1] );
-  my $sockport = ( unpack_sockaddr_in ( getsockname $socket ) )[0];
+  my $sockaddr = inet_ntoa( ( unpack_sockaddr_in ( CORE::getsockname $socket ) )[1] );
+  my $sockport = ( unpack_sockaddr_in ( CORE::getsockname $socket ) )[0];
   $peeraddr = inet_ntoa( $peeraddr );
 
   return unless grep { $_->match( $peeraddr ) } @{ $self->{access} };

@@ -1,6 +1,10 @@
 Changelog for POE::Component::Server::NSCA
 ==========================================
 
+0.04	Tue Apr  8 12:22:29 BST 2008
+	- Kwalitee fixes.
+	- Squashed some bugs as a result of above.
+
 0.02	Thu Jan 24 10:47:18 GMT 2008
 	- Spotted a problem with 'unregister'
 
