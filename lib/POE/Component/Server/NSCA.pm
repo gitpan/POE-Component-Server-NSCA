@@ -9,7 +9,7 @@ use Math::Random;
 use POE qw(Wheel::SocketFactory Wheel::ReadWrite Filter::Stream);
 use vars qw($VERSION);
 
-$VERSION='0.04';
+$VERSION='0.06';
 
 use constant MAX_INPUT_BUFFER =>        2048    ; # /* max size of most buffers we use */
 use constant MAX_HOST_ADDRESS_LENGTH => 256     ; # /* max size of a host address */
@@ -444,6 +444,7 @@ POE::Component::Server::NSCA - a POE Component that implements NSCA daemon funct
   use strict;
   use POE;
   use POE::Component::Server::NSCA;
+  use POSIX;
 
   my $nagios_cmd = '/usr/local/nagios/var/rw/nagios.cmd';
 
@@ -486,7 +487,7 @@ POE::Component::Server::NSCA - a POE Component that implements NSCA daemon funct
 		    $message->{plugin_output};
      }
 
-     print { open my $fh, '>>', $nagios_cmd or die "$!\n"; $fh } $string, "\n";
+     print { sysopen (my $fh , $nagios_cmd, POSIX::O_WRONLY) or die "$!\n"; $fh } $string, "\n";
 
      return;
   }

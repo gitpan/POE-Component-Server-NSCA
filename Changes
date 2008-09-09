@@ -1,6 +1,10 @@
 Changelog for POE::Component::Server::NSCA
 ==========================================
 
+0.06	Tue Sep  9 13:08:42 BST 2008
+	- Issue with the SYNOPSIS code pointed out in RT #39115
+	  by Andreas Fett.
+
 0.04	Tue Apr  8 12:22:29 BST 2008
 	- Kwalitee fixes.
 	- Squashed some bugs as a result of above.
