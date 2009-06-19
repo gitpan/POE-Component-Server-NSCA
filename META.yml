@@ -3,9 +3,12 @@ abstract: 'a POE Component that implements NSCA daemon functionality'
 author:
   - 'Chris Williams <chris@bingosnet.co.uk>'
 build_requires:
+  ExtUtils::MakeMaker: 6.42
   Test::More: 0.47
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.77'
+generated_by: 'Module::Install version 0.91'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -13,11 +16,14 @@ meta-spec:
 name: POE-Component-Server-NSCA
 no_index:
   directory:
+    - examples
     - inc
     - t
-    - examples
+provides:
+  POE::Component::Server::NSCA:
+    file: lib/POE/Component/Server/NSCA.pm
+    version: 0.08
 requires:
-  Carp: 0
   Math::Random: 0.7
   Net::Netmask: 1.9015
   POE: 0.38
@@ -25,7 +31,8 @@ requires:
   POE::Filter::Stream: 0
   POE::Wheel::ReadWrite: 0
   POE::Wheel::SocketFactory: 0
-  Socket: 0
 resources:
+  homepage: http://github.com/bingos/poe-component-server-nsca/tree
   license: http://dev.perl.org/licenses/
-version: 0.06
+  repository: git://github.com/bingos/poe-component-server-nsca.git
+version: 0.08
